@@ -28,10 +28,37 @@ app.config(function($stateProvider, $urlRouterProvider) {
   })
 })
 
-app.controller('MainCtrl', function($scope) {
-  $scope.rows = [
-      [ { colorText: 'Blue', color: '004358' }, { colorText: 'Electric', color: '1F8A70' }, { colorText: 'Green', color: 'BEDB39' } ],
-      [ { colorText: 'Yellow', color: 'FFE11A' }, { colorText: 'Orange', color: 'FD7400' }, { colorText: 'Red', color: 'B9121B' } ],
-      [ { colorText: 'Maroon', color: '4C1B1B' }, { colorText: 'Tan', color: 'F6E497' }, { colorText: 'Brown', color: 'BD8D46' } ]
-  ];
+app.factory('ColorsService', function() {
+  var colors = [
+      { colorText: 'Blue', color: '004358' }, 
+      { colorText: 'Electric', color: '1F8A70' },
+      { colorText: 'Green', color: 'BEDB39' },
+      { colorText: 'Yellow', color: 'FFE11A' },
+      { colorText: 'Orange', color: 'FD7400' },
+      { colorText: 'Red', color: 'B9121B' },
+      { colorText: 'Maroon', color: '4C1B1B' },
+      { colorText: 'Tan', color: 'F6E497' },
+      { colorText: 'Brown', color: 'BD8D46' }
+   ]
+
+  return {
+    colors: colors,
+    getColor: function(index) {
+      return colors[index]
+    }
+  }
+})
+
+app.controller('MainCtrl', function($scope, ColorsService) {
+  var colors = ColorsService.colors;
+  $scope.rows = split( colors, 3 );
+
+  function split(a, n) {
+    var len = a.length, out = [], i = 0;
+    while (i < len) {
+        var size = Math.ceil((len - i) / n--);
+        out.push(a.slice(i, i += size));
+    }
+    return out;
+  }
 });
