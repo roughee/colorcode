@@ -44,7 +44,7 @@
           <h1 class="title">Color Code</h1>
         </ion-header-bar>
         <ion-content>
-            <div ng-repeat="row in rows" class="row">
+            <div ng-repeat="row in rows | inSlicesOf:3" class="row">
                 <button class="button col col-33" ng-repeat="item in row" style="background-color:#{{item.color}}"
                 ui-sref="app.colors.list({color: item.id})">
                     {{item.colorText}}
