@@ -35,3 +35,9 @@
 	-ms-flex: 0 1 50% !important;
 	flex: 0 1 50% !important;
 }
+.item-center{
+	text-align: center;
+	vertical-align: middle;
+	color: white;
+	line-height: 60px;
+}
